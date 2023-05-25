@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>My Page</h1><br>
+아이디: {{user.get_username}}<br>
+이름: {{user.first_name}}{{user.last_name}} <br>
+성별: {{user.gender}} <br>
+생일: {{user.birthdate}} <br>
+이메일 정보: {{user.email}} <br>
+
+<a href="{% url 'update' %}">회원수정</a>
+
+
+{% endblock %}
