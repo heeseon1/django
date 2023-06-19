@@ -17,6 +17,12 @@
                 <input type="submit" class="btn btn-primary btn-sm" value="Add to Cart">
             </form>
             <h5><span class="badge badge-secondary">Description</span>{{product.description|linebreaks}}</h5>
+            <h5><span class="badge badge-secondary">Reivew</span><h5>
+                <a href="{% url 'shop:review_create' %}">작성하기</a>
+
+                <p>{% for review in reviews %}
+                    <p>{{review.comment}}, {{review.point}}점
+                    {% endfor %}</p>
         </div>
     </div>
 </div>

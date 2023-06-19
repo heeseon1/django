@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+    <section>
+    <form method="POST">
+        {% csrf_token %} {{form.as_p}}
+        <button type="submit"> 리뷰 등록하기 </button>
+    </form>
+        </section>
+</div>
+{% endblock %}

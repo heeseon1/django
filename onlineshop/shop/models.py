@@ -46,3 +46,9 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('shop:product_detail', args=[self.id, self.slug])
+
+
+class Review(models.Model):
+    point = models.IntegerField()
+    comment = models.CharField(max_length=500)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
