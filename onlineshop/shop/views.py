@@ -36,4 +36,8 @@ def review_create(request):
         form = ReviewForm()
     return render(request, 'shop/review_create.html', {'form':form})
 
+def review_delete(request,review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    review.delete()
+    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 

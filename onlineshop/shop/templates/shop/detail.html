@@ -32,7 +32,12 @@ Product Detail
             <div class="card bg-light mb-3">
 
                 <div class="card-header">
-                    {{review.point}}점
+                    ★: {{review.point}}
+                    <a href="{% url 'shop:review_delete' review.id %}">
+                        <button type="button" class="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </a>
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{review.comment}}</p>

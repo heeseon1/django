@@ -37,11 +37,15 @@
             </li>
             <li class="nav-item">
                 {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="" class="active nav-link">Welcome, {{user.get_username}}</a></li>
+                </li>
                 <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                 {% else %}
-                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                <a class="nav-link" href="{% url 'account_login' %}">Social Login</a>
                 {% endif %}
             </li>
+
             <li class="nav-item">
                 <a class="nav-link btn btn-outline-success" href="{% url 'cart:detail' %}">Cart
                     {% if cart|length > 0 %}
