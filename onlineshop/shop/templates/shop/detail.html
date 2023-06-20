@@ -1,29 +1,48 @@
 {% extends 'base.html' %}
-{% block title %}Product Detail{% endblock %}
+{% block title %}
+Product Detail
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="row">
+
         <div class="col-4">
             <img src="{{product.image.url}}" width="100%">
         </div>
+
         <div class="col">
             <h1 class="display-6">{{product.name}}</h1>
             <p><span class="badge badge-secondary">Price</span>
                 {% load humanize %}
                 &#8361;{{product.price | floatformat:'0' | intcomma}}</p>
-            <form action="{% url 'cart:product_add' product.id %}" method="post">
+            <form action="{% url 'cart:product_add' product.id %}" method="POST">
                 {{add_to_cart}}
                 {% csrf_token %}
                 <input type="submit" class="btn btn-primary btn-sm" value="Add to Cart">
             </form>
             <h5><span class="badge badge-secondary">Description</span>{{product.description|linebreaks}}</h5>
-            <h5><span class="badge badge-secondary">Reivew</span><h5>
-                <a href="{% url 'shop:review_create' %}">작성하기</a>
 
-                <p>{% for review in reviews %}
-                    <p>{{review.comment}}, {{review.point}}점
-                    {% endfor %}</p>
+
+            <h5><span class="badge badge-secondary">Reivew</span></h5>
+            <a href="{% url 'shop:review_create' %}">작성하기</a>
+
+            <h4 class="border-bottom my-4 py-2">{{ product.review_set.count }}개의 평가</h4>
+            {% for review in reviews %}
+            <div class="card bg-light mb-3">
+
+                <div class="card-header">
+                    {{review.point}}점
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{review.comment}}</p>
+                </div>
+
+            </div>
+            {% endfor %}
+
         </div>
     </div>
 </div>
+
 {% endblock %}

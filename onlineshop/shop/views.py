@@ -1,7 +1,9 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from cart.forms import AddProductForm
 from shop.forms import ReviewForm
+from django.views.generic.edit import CreateView
 
 def product_in_category(request, category_slug=None):
     current_category = None
@@ -22,13 +24,16 @@ def product_detail(request, id, product_slug=None):
     return render(request, 'shop/detail.html', {'product':product, 'add_to_cart': add_to_cart, 'reviews':reviews})
 
 
+
 def review_create(request):
     if request.method == "POST":
         form = ReviewForm(request.POST)
         if form.is_valid():
-            product = form.save(commit=False)
+            product = form.save()
             product.save()
-            return redirect('product-detail', pk= product.pk)
+        return redirect('/')
     else:
         form = ReviewForm()
     return render(request, 'shop/review_create.html', {'form':form})
+
+
