@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'shop',
-    'accounts',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -50,7 +49,6 @@ INSTALLED_APPS = [
     'cart',
     'coupon',
     'order',
-    'widget_tweaks',
 
 ]
 
